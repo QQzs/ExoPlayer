@@ -94,6 +94,9 @@ class ExoPlayHelper : IExoPlayer, Player.EventListener {
     }
 
     override fun stop() {
+        if (exoPlayer?.playbackState != SimpleExoPlayer.STATE_READY) {
+            return
+        }
         exoPlayer?.playWhenReady = false
         exoPlayer?.stop(true)
     }
